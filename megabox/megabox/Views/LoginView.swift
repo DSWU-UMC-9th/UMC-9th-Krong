@@ -13,11 +13,8 @@ struct LoginView: View {
             TopBarGroup
             Spacer()
             LoginGroup
-            Spacer().frame(height:75)
             ButtonGroup
-            Spacer().frame(height:35)
             SocialLoginGroup
-            Spacer().frame(height:39)
             AdPosterGroup
         }
         .padding()
@@ -39,6 +36,7 @@ struct LoginView: View {
             SecureField("비밀번호", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
             Divider()
         }
+        .padding(.bottom, 75)
     }
     
     private var ButtonGroup: some View {
@@ -64,6 +62,7 @@ struct LoginView: View {
                     .foregroundStyle(.gray04)
             })
         }
+        .padding(.bottom, 35)
     }
     
     private var SocialLoginGroup: some View {
@@ -87,6 +86,7 @@ struct LoginView: View {
             })
         }
         .padding(.horizontal, 71)
+        .padding(.bottom, 39)
     }
     
     private var AdPosterGroup: some View {
