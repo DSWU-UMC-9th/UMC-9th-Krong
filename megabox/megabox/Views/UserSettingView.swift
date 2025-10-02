@@ -20,6 +20,9 @@ struct UserSettingView: View {
             Spacer()
         }
         .padding(.horizontal, 15)
+        .task{
+            InputName = username
+        }
     }
     
     private var TopBar: some View {
