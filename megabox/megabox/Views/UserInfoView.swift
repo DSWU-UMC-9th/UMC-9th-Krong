@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserInfoView: View {
 
-    @AppStorage("id") var id: String = ""
+    @AppStorage("username") var username: String = ""
     
     var body: some View {
         VStack{
@@ -25,7 +25,7 @@ struct UserInfoView: View {
     private var TopUserGroup: some View {
         VStack{
             HStack(spacing: 5){
-                Text("\(self.id)님")
+                Text("\(self.username)님")
                     .font(.bold24)
                 Text("WELCOME")
                     .font(.medium14)
