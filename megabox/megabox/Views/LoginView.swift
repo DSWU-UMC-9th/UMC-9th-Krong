@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
 
-    @State var viewModel = LoginViewModel(id: "", pwd: "")
+    @State private var viewModel = LoginViewModel()
     @AppStorage("id") var id: String = ""
     @AppStorage("pwd") var pwd: String = ""
     
@@ -35,10 +35,10 @@ struct LoginView: View {
     
     private var LoginGroup: some View{
         VStack{
-            TextField("아이디", text: $viewModel.id)
+            TextField("아이디", text: $viewModel.loginModel.id)
             Divider()
             Spacer().frame(height:40)
-            SecureField("비밀번호", text: $viewModel.pwd)
+            SecureField("비밀번호", text: $viewModel.loginModel.pwd)
             Divider()
         }
         .padding(.bottom, 75)
@@ -47,8 +47,8 @@ struct LoginView: View {
     private var ButtonGroup: some View {
         VStack(spacing:17){
             Button(action: {
-                self.id = viewModel.id
-                self.pwd = viewModel.pwd
+                self.id = viewModel.loginModel.id
+                self.pwd = viewModel.loginModel.pwd
             }, label: {
                 Text("로그인")
                     .font(.bold18)
