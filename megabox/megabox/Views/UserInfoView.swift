@@ -12,14 +12,16 @@ struct UserInfoView: View {
     @AppStorage("username") var username: String = ""
     
     var body: some View {
-        VStack{
-            TopUserGroup
-            MembershipButton
-            StatusGroup
-            BottomReserGroup
-            Spacer()
+        NavigationStack{
+            VStack{
+                TopUserGroup
+                MembershipButton
+                StatusGroup
+                BottomReserGroup
+                Spacer()
+            }
+            .padding(.horizontal, 15)
         }
-        .padding(.horizontal, 15)
     }
     
     private var TopUserGroup: some View {
@@ -42,15 +44,17 @@ struct UserInfoView: View {
                 Button(action: {
                     print("회원정보")
                 }, label: {
-                    Text("회원정보")
-                        .font(.semibold14)
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 11.5)
-                        .padding(.vertical, 4)
-                        .background(){
-                            RoundedRectangle(cornerRadius: 16)
-                                .foregroundStyle(.gray07)
-                        }
+                    NavigationLink(destination: UserSettingView(), label: {
+                        Text("회원정보")
+                            .font(.semibold14)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 11.5)
+                            .padding(.vertical, 4)
+                            .background(){
+                                RoundedRectangle(cornerRadius: 16)
+                                    .foregroundStyle(.gray07)
+                            }
+                    })
                 })
             }
             HStack(spacing: 9){

@@ -12,17 +12,21 @@ struct UserSettingView: View {
     @AppStorage("id") var id: String = ""
     @AppStorage("username") var username: String = "사용자 이름"
     @State private var InputName: String = ""
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack{
-            TopBar
-            UserInfoGroup
-            Spacer()
+        NavigationStack{
+            VStack{
+                TopBar
+                UserInfoGroup
+                Spacer()
+            }
+            .padding(.horizontal, 15)
+            .task{
+                InputName = username
+            }
         }
-        .padding(.horizontal, 15)
-        .task{
-            InputName = username
-        }
+        .navigationBarBackButtonHidden()
     }
     
     private var TopBar: some View {
@@ -31,7 +35,7 @@ struct UserSettingView: View {
                 .font(.medium16)
             HStack{
                 Button(action: {
-                    print("뒤로가기")
+                    dismiss()
                 }, label: {
                     Image(.goBack)
                         .resizable()

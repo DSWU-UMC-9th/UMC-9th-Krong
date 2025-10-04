@@ -23,6 +23,7 @@ struct TabBar: View {
                 UserInfoView()
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
