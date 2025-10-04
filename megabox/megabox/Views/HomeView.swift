@@ -9,16 +9,18 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var viewModel = HomeViewModel()
+    private var viewModel = HomeViewModel()
     
     var body: some View {
-        ScrollView{
-            LazyVStack{
-                HeaderGroup
-                MovieCardGroup
-                FunnyMovieGroup
+        NavigationStack{
+            ScrollView{
+                LazyVStack{
+                    HeaderGroup
+                    MovieCardGroup
+                    FunnyMovieGroup
+                }
+                .padding()
             }
-            .padding()
         }
     }
     
@@ -76,42 +78,26 @@ struct HomeView: View {
             }
             .padding(.leading, 2)
             
-            ScrollView(.horizontal){
-                LazyHStack{
-                    ForEach(viewModel.MovieCard.indices, id: \.self){ index in
-                        VStack(alignment: .leading){
-                            viewModel.MovieCard[index].poster
-                            
-                            Button(action:{
-                                print("바로 예매")
-                            }, label: {
-                                Text("바로 예매")
-                                    .font(.medium16)
-                                    .foregroundStyle(.purple03)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 8.5)
-                                    .background(){
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(.purple03 ,lineWidth: 1)
-                                    }
-                            })
-                            
-                            Text(viewModel.MovieCard[index].title)
-                                .foregroundStyle(.black)
-                                .font(.bold22)
-                                .lineLimit(1)
-                            
-                            Text("누적관객수 " + viewModel.MovieCard[index].audience)
-                                .font(.medium18)
-                                .foregroundStyle(.black)
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(viewModel.MovieCard.indices, id: \.self) { index in
+                        if (index == 2) {
+                            NavigationLink {
+                                MovieDetailView(
+                                    movieTitle: viewModel.MovieCard[index].title,
+                                    moviePoster: viewModel.MovieCard[index].poster
+                                )
+                            } label: {
+                                MovieCardView(card: viewModel.MovieCard[index])
+                            }
+                        } else {
+                            MovieCardView(card: viewModel.MovieCard[index])
                         }
-                        .frame(width: 148)
-                        
                     }
                 }
             }
+            .padding(.bottom, 37)
         }
-        .padding(.bottom, 39)
     }
     
     private var FunnyMovieGroup: some View {
@@ -142,6 +128,40 @@ struct HomeView: View {
                 .padding(.bottom, 39)
             }
         }
+    }
+}
+
+struct MovieCardView: View {
+    let card: MovieCard
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            card.poster
+                .resizable()
+                .frame(width: 148, height: 212)
+            
+            Button("바로 예매") {
+                print("바로 예매")
+            }
+            .font(.medium16)
+            .foregroundStyle(.purple03)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8.5)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.purple03, lineWidth: 1)
+            }
+            
+            Text(card.title)
+                .foregroundStyle(.black)
+                .font(.bold22)
+                .lineLimit(1)
+            
+            Text("누적관객수 " + card.audience)
+                .font(.medium18)
+                .foregroundStyle(.black)
+        }
+        .frame(width: 148)
     }
 }
 
