@@ -14,15 +14,17 @@ struct LoginView: View {
     @AppStorage("pwd") var pwd: String = ""
     
     var body: some View {
-        VStack{
-            TopBarGroup
-            Spacer()
-            LoginGroup
-            ButtonGroup
-            SocialLoginGroup
-            AdPosterGroup
+        NavigationStack{
+            VStack{
+                TopBarGroup
+                Spacer()
+                LoginGroup
+                ButtonGroup
+                SocialLoginGroup
+                AdPosterGroup
+            }
+            .padding()
         }
-        .padding()
     }
     
     private var TopBarGroup: some View {
@@ -48,17 +50,19 @@ struct LoginView: View {
         VStack(spacing:17){
             Button(action: {
                 self.id = viewModel.loginModel.id
-                self.pwd = viewModel.loginModel.pwd
-            }, label: {
-                Text("로그인")
-                    .font(.bold18)
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, minHeight: 54)
-                    .background(){
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundStyle(.purple03)
-                    }
-            })
+                self.pwd = viewModel.loginModel.pwd            }, label: {
+                    NavigationLink(destination: TabBar(), label: {
+                        
+                        Text("로그인")
+                            .font(.bold18)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity, minHeight: 54)
+                            .background(){
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundStyle(.purple03)
+                            }
+                    })
+                })
             
             Button(action: {
                 print("회원가입")
