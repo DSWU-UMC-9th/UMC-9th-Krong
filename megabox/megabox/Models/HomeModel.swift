@@ -20,3 +20,13 @@ struct FunnyMovieCard: Identifiable {
     let title: String
     let info: String
 }
+
+struct MovieDetail: Identifiable {
+    let id = UUID()
+    let image: Image
+    let title: String
+    let englishTitle: String
+    let movieInfo: String
+    let age: String
+    let date: String
+}
