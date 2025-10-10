@@ -81,7 +81,6 @@ struct HomeView: View {
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 24){
                     ForEach(viewModel.MovieCard.indices, id: \.self) { index in
-                        if (index == 2) {
                             NavigationLink {
                                 MovieDetailView(
                                     movieTitle: viewModel.MovieCard[index].title,
@@ -90,9 +89,6 @@ struct HomeView: View {
                             } label: {
                                 MovieCardView(card: viewModel.MovieCard[index])
                             }
-                        } else {
-                            MovieCardView(card: viewModel.MovieCard[index])
-                        }
                     }
                 }
             }
