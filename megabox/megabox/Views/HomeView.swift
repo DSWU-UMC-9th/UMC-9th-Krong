@@ -79,7 +79,7 @@ struct HomeView: View {
             .padding(.leading, 2)
             
             ScrollView(.horizontal) {
-                LazyHStack {
+                LazyHStack(spacing: 24){
                     ForEach(viewModel.MovieCard.indices, id: \.self) { index in
                         if (index == 2) {
                             NavigationLink {
