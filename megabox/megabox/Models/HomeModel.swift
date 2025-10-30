@@ -12,6 +12,7 @@ struct MovieCard: Identifiable {
     let poster: Image
     let title: String
     let audience: String
+    let age: Int
 }
 
 struct FunnyMovieCard: Identifiable {
