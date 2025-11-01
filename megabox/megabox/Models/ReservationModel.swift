@@ -12,3 +12,9 @@ struct TheaterModel: Identifiable {
     var region: String
     var selected: Bool
 }
+
+struct WeekDay: Identifiable {
+    let id = UUID()
+    let day: String
+    let date: Date
+}

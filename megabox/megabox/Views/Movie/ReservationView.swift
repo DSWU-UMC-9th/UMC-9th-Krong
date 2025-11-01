@@ -15,13 +15,14 @@ struct ReservationView: View {
         let movieList = HomeViewModel()
         _viewModel = StateObject(wrappedValue: ReservationViewModel(movies: movieList.MovieCard))
     }
-
+    
     var body: some View {
         ScrollView{
             VStack{
                 NavigationBar
                 MovieSelectGroup
                 TheaterSelectGroup
+                DateSelectGroup
             }
         }
         .ignoresSafeArea()
@@ -84,7 +85,7 @@ struct ReservationView: View {
                                         .stroke(viewModel.selectedMovie.title == MovieList.MovieCard[index].title ? Color.purple03 : .clear, lineWidth: 3)
                                 )
                         })
-         
+                        
                     }
                 }
             }
@@ -113,6 +114,42 @@ struct ReservationView: View {
             Spacer()
         }
         .padding()
+    }
+    
+    private var DateSelectGroup: some View {
+        HStack{
+            ForEach(viewModel.weekDays) { day in
+                let isSelected = Calendar.current.isDate(day.date, inSameDayAs: viewModel.selectedDate)
+                let weekday = Calendar.current.component(.weekday, from: day.date)
+                let dateColor: Color = {
+                    if isSelected { return .white }
+                    else if weekday == 1 { return .red }
+                    else if weekday == 7 { return .tag }
+                    else { return .black }
+                }()
+                
+                Button(action: {
+                    viewModel.selectDate(day.date)
+                }, label: {
+                    VStack {
+                        Text(viewModel.dateToString(day.date, selected: isSelected))
+                            .font(.bold18)
+                            .foregroundStyle(dateColor)
+                        Text(viewModel.weekdayLabel(for: day.date))
+                            .font(.semibold14)
+                            .foregroundStyle(isSelected ? .white : .gray03)
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundStyle(isSelected ? .purple03 : .white)
+                    )
+                })
+                .disabled(!viewModel.isDateSelectable)
+            }
+        }
+        .padding(.horizontal)
     }
 }
 
