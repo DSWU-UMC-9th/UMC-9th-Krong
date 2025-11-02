@@ -23,6 +23,9 @@ struct ReservationView: View {
                 MovieSelectGroup
                 TheaterSelectGroup
                 DateSelectGroup
+                if viewModel.isTimeSelectable {
+                    TimeSelectGroup
+                }
             }
         }
         .ignoresSafeArea()
@@ -151,7 +154,71 @@ struct ReservationView: View {
         }
         .padding(.horizontal)
     }
-}
+    
+    private var TimeSelectGroup: some View {
+        VStack {
+            if viewModel.selectedRegions.isEmpty {
+                Text("상영 정보가 없습니다.")
+                    .foregroundColor(.gray)
+            } else {
+                ScrollView {
+                    ForEach(viewModel.selectedRegions) { region in
+                        VStack(alignment: .leading, spacing: 21) {
+                            Text(region.region)
+                                .font(.bold18)
+                            if region.MovieHalls.isEmpty {
+                                HStack{
+                                Text("상영 정보가 없습니다.")
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal)
+                                    Spacer()
+                                }
+                            } else {
+                                ForEach(region.MovieHalls) { hall in
+                                    VStack(alignment: .leading, spacing: 19) {
+                                        HStack {
+                                            Text(hall.name)
+                                                .font(.bold18)
+                                            Spacer()
+                                            Text(hall.format)
+                                                .font(.semibold14)
+                                        }
+
+                                        LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 4), spacing: 36) {
+                                            ForEach(hall.schedule) { schedule in
+                                                VStack(alignment: .leading) {
+                                                    Text(schedule.startTime)
+                                                        .font(.bold18)
+                                                    Text(schedule.endTime)
+                                                        .font(.regular12)
+                                                        .foregroundColor(.gray03)
+                                                    HStack{
+                                                        Text("\(schedule.remainingSeats)")
+                                                            .font(.semibold14)
+                                                            .foregroundStyle(.purple03)
+                                                        Text(" / \(schedule.totalSeats)")
+                                                            .font(.semibold14)
+                                                            .foregroundStyle(.gray03)
+                                                    }
+                                                }
+                                                .padding(10)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 12)
+                                                        .stroke(Color.gray02, lineWidth: 1)
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+                }
+            }
+        }
+    }
+    }
 
 #Preview {
     ReservationView()

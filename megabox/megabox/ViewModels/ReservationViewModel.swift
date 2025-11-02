@@ -12,14 +12,71 @@ class ReservationViewModel: ObservableObject {
     @Published var selectedMovie: MovieCard
     @Published var isTheaterSelectable: Bool = false
     @Published var isDateSelectable: Bool = false
+    @Published var isTimeSelectable: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
+    @Published var TheaterList: [TheaterModel] = []
+    @Published var regions: [TheaterModel] = []
+    
+    var selectedRegions: [TheaterModel] {
+        TheaterList.filter { $0.selected }
+    }
+
     init(movies: [MovieCard], currentWeek: Date = Date(), selectedDate: Date = Date(), calendar: Calendar = Calendar.current) {
         self.selectedMovie = movies.first ?? MovieCard(poster: Image(.movie1), title: "", audience: "", age: 0)
         self.currentWeek = currentWeek
         self.selectedDate = selectedDate
         self.calendar = calendar
-        
+        self.TheaterList = [
+                    TheaterModel(
+                        region: "강남",
+                        selected: false,
+                        MovieHalls: [
+                            MovieHallModel(
+                                name: "크리플라이나 1관",
+                                format: "2D",
+                                schedule: [
+                                    MovieSchedule(startTime: "11:30", endTime: "13:58", remainingSeats: 109, totalSeats: 116),
+                                    MovieSchedule(startTime: "14:20", endTime: "16:48", remainingSeats: 109, totalSeats: 116),
+                                    MovieSchedule(startTime: "17:05", endTime: "19:28", remainingSeats: 101, totalSeats: 116),
+                                    MovieSchedule(startTime: "19:45", endTime: "22:02", remainingSeats: 100, totalSeats: 116),
+                                    MovieSchedule(startTime: "22:20", endTime: "00:04", remainingSeats: 116, totalSeats: 116)
+                                ]
+                            )
+                        ]
+                    ),
+                    TheaterModel(
+                        region: "홍대",
+                        selected: false,
+                        MovieHalls: [
+                            MovieHallModel(
+                                name: "BTS관 (7층 1관 [Laser])",
+                                format: "2D",
+                                schedule: [
+                                    MovieSchedule(startTime: "09:30", endTime: "11:50", remainingSeats: 75, totalSeats: 116),
+                                    MovieSchedule(startTime: "12:00", endTime: "14:26", remainingSeats: 102, totalSeats: 116),
+                                    MovieSchedule(startTime: "14:45", endTime: "17:04", remainingSeats: 88, totalSeats: 116)
+                                ]
+                            ),
+                            MovieHallModel(
+                                name: "BTS관 (9층 2관 [Laser])",
+                                format: "2D",
+                                schedule: [
+                                    MovieSchedule(startTime: "11:30", endTime: "13:50", remainingSeats: 34, totalSeats: 116),
+                                    MovieSchedule(startTime: "14:10", endTime: "16:32", remainingSeats: 100, totalSeats: 116),
+                                    MovieSchedule(startTime: "16:50", endTime: "19:00", remainingSeats: 113, totalSeats: 116),
+                                    MovieSchedule(startTime: "19:30", endTime: "21:40", remainingSeats: 92, totalSeats: 116)
+                                ]
+                            )
+                        ]
+                    ),
+                    TheaterModel(
+                        region: "신촌",
+                        selected: false,
+                        MovieHalls: []
+                    )
+                ]
+                        
         $selectedMovie
             .map { !$0.title.isEmpty }
             .assign(to: \.isTheaterSelectable, on: self)
@@ -32,18 +89,22 @@ class ReservationViewModel: ObservableObject {
             .assign(to: \.isDateSelectable, on: self)
             .store(in: &cancellables)
         
+        Publishers.CombineLatest3($selectedMovie, $TheaterList, $selectedDate)
+            .map { movie, theaters, date in
+                let hasMovie = !movie.title.isEmpty
+                let hasTheater = theaters.contains(where: { $0.selected })
+                let hasDate = true 
+                return hasMovie && hasTheater && hasDate
+            }
+            .assign(to: \.isTimeSelectable, on: self)
+            .store(in: &cancellables)
+
         self.weekDays = makeWeekDays()
     }
     
     func selectMovie(_ movie: MovieCard) {
         self.selectedMovie = movie
     }
-    
-    @Published var TheaterList: [TheaterModel] = [
-        .init(region: "강남", selected: false),
-        .init(region: "홍대", selected: false),
-        .init(region: "신촌", selected: false)
-    ]
     
     var currentWeek: Date
     var calendar: Calendar
