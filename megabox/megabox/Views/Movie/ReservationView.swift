@@ -218,7 +218,7 @@ struct ReservationView: View {
             }
         }
     }
-    }
+}
 
 #Preview {
     ReservationView()
