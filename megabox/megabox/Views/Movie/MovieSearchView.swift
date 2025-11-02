@@ -19,14 +19,13 @@ struct MovieSearchView: View {
         VStack(spacing: 18){
             Text("영화 선택")
                 .font(.semibold18)
-            
+                .padding(.top, 20)
             HStack{
                 Image(systemName: "magnifyingglass")
                 TextField("Search", text: $vm.query)
                     .background(.gray01)
                 Image(systemName: "microphone.fill")
             }
-            
             .padding(8)
             .background(.gray01)
             .padding()

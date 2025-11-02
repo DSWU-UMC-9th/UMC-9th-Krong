@@ -10,6 +10,7 @@ import SwiftUI
 struct ReservationView: View {
     private var MovieList = HomeViewModel()
     @StateObject private var viewModel: ReservationViewModel
+    @State private var isShowingSheet = false
     
     init() {
         let movieList = HomeViewModel()
@@ -29,6 +30,9 @@ struct ReservationView: View {
             }
         }
         .ignoresSafeArea()
+        .sheet(isPresented: $isShowingSheet) {
+            MovieSearchView(homeVM: MovieList)
+        }
     }
     
     private var NavigationBar: some View {
@@ -55,7 +59,7 @@ struct ReservationView: View {
                     .font(.bold18)
                 Spacer()
                 Button(action:{
-                    print("전체 영화")
+                    isShowingSheet.toggle()
                 }, label: {
                     Text("전체영화")
                         .font(.semibold14)
