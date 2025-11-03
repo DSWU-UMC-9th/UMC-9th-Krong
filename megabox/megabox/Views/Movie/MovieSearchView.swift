@@ -10,9 +10,12 @@ import SwiftUI
 struct MovieSearchView: View {
     
     @StateObject private var vm: MovieSearchViewModel
+    @ObservedObject private var movieSelectVM: ReservationViewModel
+    @Environment(\.dismiss) var dismiss
     
-    init(homeVM: HomeViewModel) {
+    init(homeVM: HomeViewModel, movieSelectVM: ReservationViewModel) {
         _vm = StateObject(wrappedValue: MovieSearchViewModel(homeVM: homeVM))
+        self.movieSelectVM = movieSelectVM
     }
     
     var body: some View {
@@ -36,13 +39,19 @@ struct MovieSearchView: View {
             } else{
                 LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 3), spacing: 61){
                     ForEach(vm.results, id:\.id){ movie in
-                        VStack{
-                            movie.poster
-                                .resizable()
-                                .frame(width: 95, height: 135)
-                            Text(movie.title)
-                                .font(.semibold14)
-                        }
+                        Button(action: {
+                            movieSelectVM.selectedMovie = movie
+                            dismiss()
+                        }, label: {
+                            VStack{
+                                movie.poster
+                                    .resizable()
+                                    .frame(width: 95, height: 135)
+                                Text(movie.title)
+                                    .font(.semibold14)
+                                    .foregroundStyle(.black)
+                            }
+                        })
                     }
                 }
             }
@@ -50,9 +59,4 @@ struct MovieSearchView: View {
 
         }
     }
-}
-
-#Preview {
-    let homeVM = HomeViewModel()
-    MovieSearchView(homeVM: homeVM)
 }

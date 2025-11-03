@@ -31,7 +31,7 @@ struct ReservationView: View {
         }
         .ignoresSafeArea()
         .sheet(isPresented: $isShowingSheet) {
-            MovieSearchView(homeVM: MovieList)
+            MovieSearchView(homeVM: MovieList, movieSelectVM: viewModel)
         }
     }
     
