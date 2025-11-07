@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieDTO: Codable {
     let id: String
     let title: String
-    let age_rating: Int
+    let age_rating: String
     let schedules: [ScheduleDTO]
 }
 
@@ -28,7 +28,7 @@ extension MovieDTO {
             poster: Image(imageName),
             title: title,
             audience: "정보 없음",
-            age: Int(age_rating)
+            age: Int(age_rating) ?? 0
         )
     }
 }

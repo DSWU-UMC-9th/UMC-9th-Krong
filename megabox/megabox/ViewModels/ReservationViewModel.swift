@@ -27,55 +27,55 @@ class ReservationViewModel: ObservableObject {
         self.currentWeek = currentWeek
         self.selectedDate = selectedDate
         self.calendar = calendar
-        self.TheaterList = [
-                    TheaterModel(
-                        region: "강남",
-                        selected: false,
-                        MovieHalls: [
-                            MovieHallModel(
-                                name: "크리플라이나 1관",
-                                format: "2D",
-                                schedule: [
-                                    MovieSchedule(startTime: "11:30", endTime: "13:58", remainingSeats: 109, totalSeats: 116),
-                                    MovieSchedule(startTime: "14:20", endTime: "16:48", remainingSeats: 109, totalSeats: 116),
-                                    MovieSchedule(startTime: "17:05", endTime: "19:28", remainingSeats: 101, totalSeats: 116),
-                                    MovieSchedule(startTime: "19:45", endTime: "22:02", remainingSeats: 100, totalSeats: 116),
-                                    MovieSchedule(startTime: "22:20", endTime: "00:04", remainingSeats: 116, totalSeats: 116)
-                                ]
-                            )
-                        ]
-                    ),
-                    TheaterModel(
-                        region: "홍대",
-                        selected: false,
-                        MovieHalls: [
-                            MovieHallModel(
-                                name: "BTS관 (7층 1관 [Laser])",
-                                format: "2D",
-                                schedule: [
-                                    MovieSchedule(startTime: "09:30", endTime: "11:50", remainingSeats: 75, totalSeats: 116),
-                                    MovieSchedule(startTime: "12:00", endTime: "14:26", remainingSeats: 102, totalSeats: 116),
-                                    MovieSchedule(startTime: "14:45", endTime: "17:04", remainingSeats: 88, totalSeats: 116)
-                                ]
-                            ),
-                            MovieHallModel(
-                                name: "BTS관 (9층 2관 [Laser])",
-                                format: "2D",
-                                schedule: [
-                                    MovieSchedule(startTime: "11:30", endTime: "13:50", remainingSeats: 34, totalSeats: 116),
-                                    MovieSchedule(startTime: "14:10", endTime: "16:32", remainingSeats: 100, totalSeats: 116),
-                                    MovieSchedule(startTime: "16:50", endTime: "19:00", remainingSeats: 113, totalSeats: 116),
-                                    MovieSchedule(startTime: "19:30", endTime: "21:40", remainingSeats: 92, totalSeats: 116)
-                                ]
-                            )
-                        ]
-                    ),
-                    TheaterModel(
-                        region: "신촌",
-                        selected: false,
-                        MovieHalls: []
-                    )
-                ]
+//        self.TheaterList = [
+//                    TheaterModel(
+//                        region: "강남",
+//                        selected: false,
+//                        MovieHalls: [
+//                            MovieHallModel(
+//                                name: "크리플라이나 1관",
+//                                format: "2D",
+//                                schedule: [
+//                                    MovieSchedule(startTime: "11:30", endTime: "13:58", remainingSeats: 109, totalSeats: 116),
+//                                    MovieSchedule(startTime: "14:20", endTime: "16:48", remainingSeats: 109, totalSeats: 116),
+//                                    MovieSchedule(startTime: "17:05", endTime: "19:28", remainingSeats: 101, totalSeats: 116),
+//                                    MovieSchedule(startTime: "19:45", endTime: "22:02", remainingSeats: 100, totalSeats: 116),
+//                                    MovieSchedule(startTime: "22:20", endTime: "00:04", remainingSeats: 116, totalSeats: 116)
+//                                ]
+//                            )
+//                        ]
+//                    ),
+//                    TheaterModel(
+//                        region: "홍대",
+//                        selected: false,
+//                        MovieHalls: [
+//                            MovieHallModel(
+//                                name: "BTS관 (7층 1관 [Laser])",
+//                                format: "2D",
+//                                schedule: [
+//                                    MovieSchedule(startTime: "09:30", endTime: "11:50", remainingSeats: 75, totalSeats: 116),
+//                                    MovieSchedule(startTime: "12:00", endTime: "14:26", remainingSeats: 102, totalSeats: 116),
+//                                    MovieSchedule(startTime: "14:45", endTime: "17:04", remainingSeats: 88, totalSeats: 116)
+//                                ]
+//                            ),
+//                            MovieHallModel(
+//                                name: "BTS관 (9층 2관 [Laser])",
+//                                format: "2D",
+//                                schedule: [
+//                                    MovieSchedule(startTime: "11:30", endTime: "13:50", remainingSeats: 34, totalSeats: 116),
+//                                    MovieSchedule(startTime: "14:10", endTime: "16:32", remainingSeats: 100, totalSeats: 116),
+//                                    MovieSchedule(startTime: "16:50", endTime: "19:00", remainingSeats: 113, totalSeats: 116),
+//                                    MovieSchedule(startTime: "19:30", endTime: "21:40", remainingSeats: 92, totalSeats: 116)
+//                                ]
+//                            )
+//                        ]
+//                    ),
+//                    TheaterModel(
+//                        region: "신촌",
+//                        selected: false,
+//                        MovieHalls: []
+//                    )
+//                ]
                         
         $selectedMovie
             .map { !$0.title.isEmpty }
@@ -93,13 +93,18 @@ class ReservationViewModel: ObservableObject {
             .map { movie, theaters, date in
                 let hasMovie = !movie.title.isEmpty
                 let hasTheater = theaters.contains(where: { $0.selected })
-                let hasDate = true 
+                let hasDate = true
                 return hasMovie && hasTheater && hasDate
             }
             .assign(to: \.isTimeSelectable, on: self)
             .store(in: &cancellables)
 
         self.weekDays = makeWeekDays()
+        if movies.isEmpty {
+            Task {
+                await self.FetchMovieSchedule()
+            }
+        }
     }
     
     func selectMovie(_ movie: MovieCard) {
@@ -146,5 +151,29 @@ class ReservationViewModel: ObservableObject {
     
      func selectDate(_ date: Date) {
          self.selectedDate = date
+    }
+    
+    func FetchMovieSchedule() async {
+        guard let url = Bundle.main.url(
+            forResource: "MovieSchedule", withExtension: "json"),
+              let data = try? Data(contentsOf: url) else {
+            return
+        }
+        
+        do {
+            let response = try JSONDecoder().decode(APIResponseDTO.self, from: data)
+            
+            await MainActor.run {
+                self.TheaterList = response.data.movies
+                    .flatMap { $0.schedules }                
+                    .flatMap { $0.areas }
+                    .map { area in
+                        area.toDomain()
+                    }
+            }
+            
+        } catch {
+            print("Decoding error: ", error)
+        }
     }
 }

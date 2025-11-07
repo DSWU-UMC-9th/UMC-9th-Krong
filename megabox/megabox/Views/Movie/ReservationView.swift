@@ -33,6 +33,10 @@ struct ReservationView: View {
         .sheet(isPresented: $isShowingSheet) {
             MovieSearchView(homeVM: MovieList, movieSelectVM: viewModel)
         }
+        .task {
+            await MovieList.fetchMovies()
+            await viewModel.FetchMovieSchedule()
+        }
     }
     
     private var NavigationBar: some View {
@@ -51,7 +55,7 @@ struct ReservationView: View {
     private var MovieSelectGroup: some View {
         VStack{
             HStack{
-                Text("\(viewModel.selectedMovie.age)")
+                Text(viewModel.selectedMovie.age == 0 ? "" :  "\(viewModel.selectedMovie.age)")
                     .foregroundStyle(.white)
                     .font(.bold18)
                     .background(.orange)
@@ -101,26 +105,28 @@ struct ReservationView: View {
     }
     
     private var TheaterSelectGroup: some View {
-        HStack{
-            ForEach(viewModel.TheaterList.indices, id: \.self) { index in
-                Button(action: {
-                    viewModel.TheaterList[index].selected.toggle()
-                }, label: {
-                    Text(viewModel.TheaterList[index].region)
-                        .font(.semibold16)
-                        .foregroundStyle(viewModel.TheaterList[index].selected == true ? .white : .gray05)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 15)
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundStyle(viewModel.TheaterList[index].selected == true ? .purple03 : .gray01)
-                        )
-                })
-                .disabled(!viewModel.isTheaterSelectable)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack{
+                ForEach(viewModel.TheaterList.indices, id: \.self) { index in
+                    Button(action: {
+                        viewModel.TheaterList[index].selected.toggle()
+                    }, label: {
+                        Text(viewModel.TheaterList[index].region)
+                            .font(.semibold16)
+                            .foregroundStyle(viewModel.TheaterList[index].selected == true ? .white : .gray05)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 15)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .foregroundStyle(viewModel.TheaterList[index].selected == true ? .purple03 : .gray01)
+                            )
+                    })
+                    .disabled(!viewModel.isTheaterSelectable)
+                }
+                Spacer()
             }
-            Spacer()
+            .padding()
         }
-        .padding()
     }
     
     private var DateSelectGroup: some View {
