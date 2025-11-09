@@ -98,14 +98,18 @@ struct HomeView: View {
     
     private var FunnyMovieGroup: some View {
         VStack(alignment: .leading){
-            HStack{
-                Text("알고보면 더 재밌는 무비피드")
-                    .font(.bold24)
-                Spacer()
-                Image(systemName: "arrow.right")
+            VStack{
+                HStack{
+                    Text("알고보면 더 재밌는 무비피드")
+                        .font(.bold24)
+                    Spacer()
+                    Image(systemName: "arrow.right")
+                }
+                Image(.funnyMovie)
+                    .resizable()
+                    .padding(.bottom, 44)
             }
-            Image(.funnyMovie)
-                .padding(.bottom, 44)
+            .padding(.horizontal, 8)
             
             ForEach(viewModel.FunnyMovieCard.indices, id: \.self){index in
                 HStack{

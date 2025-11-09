@@ -10,11 +10,14 @@ import SwiftUI
 @Observable
 class HomeViewModel {
     let MovieCard: [MovieCard] = [
-        .init(poster: .init(.movie1), title: "어쩔수가없다", audience: "20만"),
-        .init(poster: .init(.movie2), title: "귀멸의 칼날 무한성편", audience: "10만"),
-        .init(poster: .init(.movie3), title: "F1 더 무비", audience: "170만"),
-        .init(poster: .init(.movie4), title: "얼굴", audience: "52만"),
-        .init(poster: .init(.movie5), title: "모노노케 히메", audience: "25만")
+        .init(poster: .init(.movie1), title: "어쩔수가없다", audience: "20만", age: 15),
+        .init(poster: .init(.movie2), title: "귀멸의 칼날 무한성편", audience: "10만", age: 15),
+        .init(poster: .init(.movie3), title: "F1 더 무비", audience: "170만", age: 15),
+        .init(poster: .init(.movie4), title: "얼굴", audience: "52만", age: 15),
+        .init(poster: .init(.movie5), title: "모노노케 히메", audience: "25만", age: 15),
+        .init(poster: .init(.movie6), title: "보스", audience: "22만", age: 15),
+        .init(poster: .init(.movie7), title: "야당", audience: "25만", age: 15),
+        .init(poster: .init(.movie8), title: "The Roses", audience: "22만", age: 15),
     ]
     
     let FunnyMovieCard: [FunnyMovieCard] = [

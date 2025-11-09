@@ -7,32 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		446001622E7F02D9006370A5 /* megabox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = megabox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		44C29A1E2EB1D18600776A7A /* Week4_Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Week4_Practice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		446001762E7F04FC006370A5 /* Exceptions for "megabox" folder in "megabox" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 446001612E7F02D9006370A5 /* megabox */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		446001642E7F02D9006370A5 /* megabox */ = {
+		44C29A202EB1D18600776A7A /* Week4_Practice */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				446001762E7F04FC006370A5 /* Exceptions for "megabox" folder in "megabox" target */,
-			);
-			path = megabox;
+			path = Week4_Practice;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4460015F2E7F02D9006370A5 /* Frameworks */ = {
+		44C29A1B2EB1D18600776A7A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		446001592E7F02D9006370A5 = {
+		44C29A152EB1D18600776A7A = {
 			isa = PBXGroup;
 			children = (
-				446001642E7F02D9006370A5 /* megabox */,
-				446001632E7F02D9006370A5 /* Products */,
+				44C29A202EB1D18600776A7A /* Week4_Practice */,
+				44C29A1F2EB1D18600776A7A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		446001632E7F02D9006370A5 /* Products */ = {
+		44C29A1F2EB1D18600776A7A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				446001622E7F02D9006370A5 /* megabox.app */,
+				44C29A1E2EB1D18600776A7A /* Week4_Practice.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		446001612E7F02D9006370A5 /* megabox */ = {
+		44C29A1D2EB1D18600776A7A /* Week4_Practice */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4460016D2E7F02DB006370A5 /* Build configuration list for PBXNativeTarget "megabox" */;
+			buildConfigurationList = 44C29A292EB1D18800776A7A /* Build configuration list for PBXNativeTarget "Week4_Practice" */;
 			buildPhases = (
-				4460015E2E7F02D9006370A5 /* Sources */,
-				4460015F2E7F02D9006370A5 /* Frameworks */,
-				446001602E7F02D9006370A5 /* Resources */,
+				44C29A1A2EB1D18600776A7A /* Sources */,
+				44C29A1B2EB1D18600776A7A /* Frameworks */,
+				44C29A1C2EB1D18600776A7A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				446001642E7F02D9006370A5 /* megabox */,
+				44C29A202EB1D18600776A7A /* Week4_Practice */,
 			);
-			name = megabox;
+			name = Week4_Practice;
 			packageProductDependencies = (
 			);
-			productName = megabox;
-			productReference = 446001622E7F02D9006370A5 /* megabox.app */;
+			productName = Week4_Practice;
+			productReference = 44C29A1E2EB1D18600776A7A /* Week4_Practice.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		4460015A2E7F02D9006370A5 /* Project object */ = {
+		44C29A162EB1D18600776A7A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					446001612E7F02D9006370A5 = {
-						CreatedOnToolsVersion = 16.3;
+					44C29A1D2EB1D18600776A7A = {
+						CreatedOnToolsVersion = 26.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 4460015D2E7F02D9006370A5 /* Build configuration list for PBXProject "megabox" */;
+			buildConfigurationList = 44C29A192EB1D18600776A7A /* Build configuration list for PBXProject "Week4_Practice" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 446001592E7F02D9006370A5;
+			mainGroup = 44C29A152EB1D18600776A7A;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 446001632E7F02D9006370A5 /* Products */;
+			productRefGroup = 44C29A1F2EB1D18600776A7A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				446001612E7F02D9006370A5 /* megabox */,
+				44C29A1D2EB1D18600776A7A /* Week4_Practice */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		446001602E7F02D9006370A5 /* Resources */ = {
+		44C29A1C2EB1D18600776A7A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4460015E2E7F02D9006370A5 /* Sources */ = {
+		44C29A1A2EB1D18600776A7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -138,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		4460016B2E7F02DB006370A5 /* Debug */ = {
+		44C29A272EB1D18800776A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -190,19 +177,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		4460016C2E7F02DB006370A5 /* Release */ = {
+		44C29A282EB1D18800776A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -248,18 +234,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		4460016E2E7F02DB006370A5 /* Debug */ = {
+		44C29A2A2EB1D18800776A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -268,7 +253,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = megabox/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -279,15 +263,19 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mzxxzysy.megabox;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mzxxzysy.Week4-Practice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		4460016F2E7F02DB006370A5 /* Release */ = {
+		44C29A2B2EB1D18800776A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -296,7 +284,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = megabox/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -307,9 +294,13 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mzxxzysy.megabox;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mzxxzysy.Week4-Practice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -318,25 +309,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4460015D2E7F02D9006370A5 /* Build configuration list for PBXProject "megabox" */ = {
+		44C29A192EB1D18600776A7A /* Build configuration list for PBXProject "Week4_Practice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4460016B2E7F02DB006370A5 /* Debug */,
-				4460016C2E7F02DB006370A5 /* Release */,
+				44C29A272EB1D18800776A7A /* Debug */,
+				44C29A282EB1D18800776A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4460016D2E7F02DB006370A5 /* Build configuration list for PBXNativeTarget "megabox" */ = {
+		44C29A292EB1D18800776A7A /* Build configuration list for PBXNativeTarget "Week4_Practice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4460016E2E7F02DB006370A5 /* Debug */,
-				4460016F2E7F02DB006370A5 /* Release */,
+				44C29A2A2EB1D18800776A7A /* Debug */,
+				44C29A2B2EB1D18800776A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 4460015A2E7F02D9006370A5 /* Project object */;
+	rootObject = 44C29A162EB1D18600776A7A /* Project object */;
 }
